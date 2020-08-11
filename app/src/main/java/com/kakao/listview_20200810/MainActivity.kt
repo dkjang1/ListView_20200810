@@ -46,5 +46,15 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+//        리스트목록 이벤트처리
+        studentListView.setOnItemLongClickListener { adapterView, view, position, l ->
+
+            mStudentList.removeAt(position)
+            mStudentAdapter.notifyDataSetChanged()
+
+//            오래눌린 이벤트 reuturn true/false
+            return@setOnItemLongClickListener true
+        }
+
     }
 }
