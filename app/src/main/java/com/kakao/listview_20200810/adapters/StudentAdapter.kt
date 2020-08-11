@@ -30,11 +30,16 @@ class StudentAdapter(
         val row = tempRow!!
 
         val nameTxt = row.findViewById<TextView>(R.id.nameTxt)
+        val addressTxt = row.findViewById<TextView>(R.id.addressTxt)
+        val ageTxt = row.findViewById<TextView>(R.id.ageTxt)
 
 //      상황에 맞는 position에 맞게 데이터변수(mList) 가져오기
-        val data =  mList[position]
+        val data = mList[position]
 
-       nameTxt.text = data.name
+        nameTxt.text = data.name
+//        addressTxt.text = "("+ data.address +")"
+        addressTxt.text = "(${data.address})"
+        ageTxt.text = (2020 - data.birthYear).toString() +"세,"+ if(data.isMale==true) "남자" else "여자"
 
 //       최종완성 row
         return row
