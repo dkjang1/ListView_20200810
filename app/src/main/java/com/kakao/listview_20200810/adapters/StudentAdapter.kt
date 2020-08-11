@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.kakao.listview_20200810.R
 import com.kakao.listview_20200810.datas.Student
 
@@ -28,6 +29,14 @@ class StudentAdapter(
 
         val row = tempRow!!
 
+        val nameTxt = row.findViewById<TextView>(R.id.nameTxt)
+
+//      상황에 맞는 position에 맞게 데이터변수(mList) 가져오기
+        val data =  mList[position]
+
+       nameTxt.text = data.name
+
+//       최종완성 row
         return row
     }
 
