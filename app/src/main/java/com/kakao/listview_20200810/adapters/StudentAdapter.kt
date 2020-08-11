@@ -39,13 +39,18 @@ class StudentAdapter(
         nameTxt.text = data.name
 //        addressTxt.text = "("+ data.address +")"
         addressTxt.text = "(${data.address})"
-//        data내부에 isMale, birthYear => 33세, 남성
 
-        var genderStr = "여성"
-        if (data.isMale) genderStr = "남성"
-        val age = 2020 - data.birthYear + 1
-        ageAndGenderTxt.text = "${age}세, ${genderStr}"
+
+
+
+//        data내부에 isMale, birthYear => 33세, 남성
 //        ageAndGenderTxt.text = "${(2020 - data.birthYear + 1)}세, ${if(data.isMale==true) "남자" else "여자"}"
+
+//        var genderStr = "여성"
+//        if (data.isMale) genderStr = "남성"
+//        val age = 2020 - data.birthYear + 1
+//        ageAndGenderTxt.text = "${age}세, ${genderStr}"
+        ageAndGenderTxt.text = "${data.getKoreanAge()}세, ${data.getGenderString()}"
 
 //       최종완성 row
         return row
