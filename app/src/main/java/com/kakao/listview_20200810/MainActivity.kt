@@ -1,8 +1,10 @@
 package com.kakao.listview_20200810
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.kakao.listview_20200810.adapters.StudentAdapter
 import com.kakao.listview_20200810.datas.Student
 import kotlinx.android.synthetic.main.activity_main.*
@@ -10,7 +12,7 @@ import java.security.KeyStore
 
 class MainActivity : AppCompatActivity() {
 
-//    학생명부가 담길 목록변수
+    //    학생명부가 담길 목록변수
     val mStudentList = ArrayList<Student>()
 
 //    Adapter는 멤버변수 초기화할수없다
@@ -23,14 +25,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 //        학생명부에 실제학생 데이터추가
-        mStudentList.add(Student("조경진","서울시 은평구", true, 1988))
-        mStudentList.add(Student("강윤정","경기도 안양시", false, 1991))
-        mStudentList.add(Student("구주영","서울시 용산구", true, 1968))
-        mStudentList.add(Student("윤은영","경기도 수원시", false, 1992))
-        mStudentList.add(Student("이선영","경기도 고양시", false, 1985))
-        mStudentList.add(Student("이용찬","서울시 노원구", true, 1976))
-        mStudentList.add(Student("장동국","서울시 은평구", true, 1974))
-        mStudentList.add(Student("최인선","서울시 영등포구", false, 1992))
+        mStudentList.add(Student("조경진", "서울시 은평구", true, 1988))
+        mStudentList.add(Student("강윤정", "경기도 안양시", false, 1991))
+        mStudentList.add(Student("구주영", "서울시 용산구", true, 1968))
+        mStudentList.add(Student("윤은영", "경기도 수원시", false, 1992))
+        mStudentList.add(Student("이선영", "경기도 고양시", false, 1985))
+        mStudentList.add(Student("이용찬", "서울시 노원구", true, 1976))
+        mStudentList.add(Student("장동국", "서울시 은평구", true, 1974))
+        mStudentList.add(Student("최인선", "서울시 영등포구", false, 1992))
 
 //        Adapter변수 onCreate 내부에서 초기화함
         mStudentAdapter = StudentAdapter(this, R.layout.student_list_item, mStudentList)
@@ -49,8 +51,15 @@ class MainActivity : AppCompatActivity() {
 //        리스트목록 이벤트처리
         studentListView.setOnItemLongClickListener { adapterView, view, position, l ->
 
-            mStudentList.removeAt(position)
-            mStudentAdapter.notifyDataSetChanged()
+            val alert = AlertDialog.Builder(this)
+            alert.setTitle("삭제메시지")
+            alert.setMessage("정말 삭제하시겠습니까?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+                mStudentList.removeAt(position)
+                mStudentAdapter.notifyDataSetChanged()
+            })
+            alert.setNegativeButton("취소", null)
+            alert.show()
 
 //            오래눌린 이벤트 reuturn true/false
             return@setOnItemLongClickListener true
