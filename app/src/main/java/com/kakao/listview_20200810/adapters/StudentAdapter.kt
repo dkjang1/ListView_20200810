@@ -10,7 +10,7 @@ import com.kakao.listview_20200810.datas.Student
 
 class StudentAdapter(
     val mContext: Context,
-    val resId: int,
+    val resId: Int,
     val mList: List<Student>
 ) : ArrayAdapter<Student>(mContext, resId, mList) {
 
