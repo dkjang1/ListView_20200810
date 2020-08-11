@@ -31,7 +31,7 @@ class StudentAdapter(
 
         val nameTxt = row.findViewById<TextView>(R.id.nameTxt)
         val addressTxt = row.findViewById<TextView>(R.id.addressTxt)
-        val ageTxt = row.findViewById<TextView>(R.id.ageTxt)
+        val ageAndGenderTxt = row.findViewById<TextView>(R.id.ageAndGenderTxt)
 
 //      상황에 맞는 position에 맞게 데이터변수(mList) 가져오기
         val data = mList[position]
@@ -39,7 +39,13 @@ class StudentAdapter(
         nameTxt.text = data.name
 //        addressTxt.text = "("+ data.address +")"
         addressTxt.text = "(${data.address})"
-        ageTxt.text = (2020 - data.birthYear).toString() +"세,"+ if(data.isMale==true) "남자" else "여자"
+//        data내부에 isMale, birthYear => 33세, 남성
+
+        var genderStr = "여성"
+        if (data.isMale) genderStr = "남성"
+        val age = 2020 - data.birthYear + 1
+        ageAndGenderTxt.text = "${age}세, ${genderStr}"
+//        ageAndGenderTxt.text = "${(2020 - data.birthYear + 1)}세, ${if(data.isMale==true) "남자" else "여자"}"
 
 //       최종완성 row
         return row
